@@ -1,2 +1,4 @@
 .rake_test_cache
+config/*.pem
+config/knife.rb
 
