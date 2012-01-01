@@ -24,3 +24,8 @@ end
 cookbook_file "/etc/amavisd.conf" do
   source "amavisd.conf"
 end
+
+service "amavisd" do
+  action :start
+end
+
