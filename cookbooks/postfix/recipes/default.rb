@@ -21,9 +21,9 @@ package "postfix" do
  action [:install]
 end
 
-#cookbook_file "/etc/postfix/postfix.conf" do
-#  source "postfix.conf"
-#end
+cookbook_file "/etc/postfix/master.cf" do
+  source "master.cf"
+end
 
 service "postfix" do
   action :start
