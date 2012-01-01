@@ -20,3 +20,7 @@
 package "amavisd-new" do
  action [:install]
 end
+
+cookbook_file "/etc/amavisd.conf" do
+  source "amavisd.conf"
+end
