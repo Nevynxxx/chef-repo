@@ -23,6 +23,7 @@ end
 
 cookbook_file "/etc/amavisd/amavisd.conf" do
   source "amavisd.conf"
+  notifies :restart, "service[amavisd]"
 end
 
 service "amavisd" do

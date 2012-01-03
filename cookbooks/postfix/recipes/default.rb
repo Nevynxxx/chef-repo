@@ -37,6 +37,7 @@ end
 
 template "/etc/postfix/main.cf"do
   source "main.cf.erb"
+  notifies :restart, "service[postfix]"
 end
 
 service "postfix" do
