@@ -1,4 +1,8 @@
 .rake_test_cache
-.chef/*.pem
+*/*.pem
+cookbooks/postfix/*/*/*.pem
+cookbooks/postfix/*/*/*.key
+cookbooks/postfix/*/*/*.crt
+cookbooks/postfix/*/*/*.csr
 .chef/knife.rb
 
