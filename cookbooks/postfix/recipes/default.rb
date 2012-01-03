@@ -21,8 +21,22 @@ package "postfix" do
  action [:install]
 end
 
-cookbook_file "/etc/postfix/master.cf" do
-  source "master.cf"
+cookbook_file "/etc/postfix/master.cf"
+
+cookbook_file "/etc/postfix/server.key" do
+  mode 0400
+end
+
+cookbook_file "/etc/postfix/server.crt" do
+  mode 0400
+end
+
+cookbook_file "/etc/postfix/server.pem" do
+  mode 0400
+end
+
+template "/etc/postfix/main.cf"do
+  source "main.cf.erb"
 end
 
 service "postfix" do
