@@ -4,5 +4,5 @@ cookbooks/postfix/*/*/*.pem
 cookbooks/postfix/*/*/*.key
 cookbooks/postfix/*/*/*.crt
 cookbooks/postfix/*/*/*.csr
-.chef/knife.rb
+.chef/*.rb
 
