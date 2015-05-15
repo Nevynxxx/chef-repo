@@ -5,4 +5,6 @@ cookbooks/postfix/*/*/*.key
 cookbooks/postfix/*/*/*.crt
 cookbooks/postfix/*/*/*.csr
 .chef/*.rb
+.chef/trusted_certs/*
+
 
