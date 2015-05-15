@@ -1,0 +1,29 @@
+{
+  "name": "windows-vmtools",
+  "description": "Installs/Configures windows-vmtools",
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "maintainer": "Anthony Metcalf",
+  "maintainer_email": "nevyn@anferny.me.uk",
+  "license": "Apache 2.0",
+  "platforms": {
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.0.4"
+}

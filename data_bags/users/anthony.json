@@ -1,0 +1,9 @@
+{
+  "id": "anthony",
+  "groups": "sysadmin",
+  "htpasswd": "{SHA}54NTNMS2QrN20CoHGb9wg1YGjK4=",
+  "nagios": {
+    "pager": "",
+    "email": "anthony@simplymailsolutions.com"
+  }
+}

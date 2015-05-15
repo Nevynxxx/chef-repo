@@ -1,0 +1,35 @@
+# Switches
+<% switches = [] -%>
+<% switches << {:Name=>"Switch7-3750x.syn",:IP=>"10.1.1.107"} -%>
+<% switches << {:Name=>"Switch5-3750",:IP=>"10.1.1.105"} -%>
+<% switches << {:Name=>"Switch6-3750x",:IP=>"10.1.1.106"} -%>
+
+# Define the actual switches
+<% switches.each do |s| -%>
+
+define host{
+	use		switch		; Inherit default values from a template
+	host_name	<%= s[:Name] %>		; The name we're giving to this switch
+	alias		<%= s[:Name] %>	; A longer name associated with the switch
+	address		<%= s[:IP] %>		; IP address of the switch
+	hostgroups	all,switches			; Host groups this switch is associated with
+	}
+<% end -%>
+
+# Define the ports to be monitored for link state
+
+<% ports = [] -%>
+<% ports << {:Switch=>"Switch7-3750x.syn",:Port=>"10120",:Name=>"Edge Router"} -%>
+<% ports << {:Switch=>"Switch7-3750x.syn",:Port=>"10121",:Name=>"Fluid ASA"} -%>
+<% ports << {:Switch=>"Switch7-3750x.syn",:Port=>"10127",:Name=>"Cogent"} -%>
+<% ports << {:Switch=>"Switch7-3750x.syn",:Port=>"10128",:Name=>"Metronet Synergy (old)"} -%>
+<% ports << {:Switch=>"Switch6-3750x.syn",:Port=>"10124",:Name=>"Metronet Synergy (new)"} -%>
+
+<% ports.each do |p| -%>
+	define service{
+	use                  default-service
+	host_name            <%= p[:Switch] %>
+	service_description  <%= p[:Name] %> Link Status
+	check_command       check_snmp!-C smspriv -o ifOperStatus.<%= p[:Port] %> -r 1 -m RFC1213-MIB
+	}
+<% end -%>

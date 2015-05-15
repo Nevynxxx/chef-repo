@@ -1,8 +1,9 @@
 #
+# Author:: Joshua Timberman(<joshua@opscode.com>)
 # Cookbook Name:: postfix
 # Recipe:: default
 #
-# Copyright 2012, Anthony Metcalf
+# Copyright 2009-2012, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,30 +18,40 @@
 # limitations under the License.
 #
 
-package "postfix" do
- action [:install]
+["postfix","mailx"].each do |p|
+  package p do
+    action :install
+  end
 end
 
-cookbook_file "/etc/postfix/master.cf"
-
-cookbook_file "/etc/postfix/server.key" do
-  mode 0400
+service "postfix" do
+  supports :status => true, :restart => true, :reload => true
+  action :enable
 end
 
-cookbook_file "/etc/postfix/server.crt" do
-  mode 0400
+case node[:platform]
+when "redhat", "centos", "amazon", "scientific"
+  service "sendmail" do
+    action :nothing
+  end
+  execute "switch_mailer_to_postfix" do
+    command "/usr/sbin/alternatives --set mta /usr/sbin/sendmail.postfix"
+    notifies :stop, resources(:service => "sendmail")
+    notifies :start, resources(:service => "postfix")
+    not_if "/usr/bin/test /etc/alternatives/mta -ef /usr/sbin/sendmail.postfix"
+  end
 end
 
-cookbook_file "/etc/postfix/server.pem" do
-  mode 0400
-end
-
-template "/etc/postfix/main.cf"do
-  source "main.cf.erb"
-  notifies :restart, "service[postfix]"
+%w{main master}.each do |cfg|
+  template "/etc/postfix/#{cfg}.cf" do
+    source "#{cfg}.cf.erb"
+    owner "root"
+    group "root"
+    mode 0644
+    notifies :restart, resources(:service => "postfix")
+  end
 end
 
 service "postfix" do
   action :start
 end
-
