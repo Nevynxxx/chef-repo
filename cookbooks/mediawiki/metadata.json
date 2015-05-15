@@ -1,0 +1,29 @@
+{
+  "name": "mediawiki",
+  "description": "Installs/Configures MediaWiki",
+  "long_description": "",
+  "maintainer": "Anthony Metcalf",
+  "maintainer_email": "anthony@simplymailsolutions.com",
+  "license": "Apache 2.0",
+  "platforms": {
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.0.3"
+}

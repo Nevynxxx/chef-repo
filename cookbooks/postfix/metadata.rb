@@ -1,3 +1,4 @@
+name			"postfix"
 maintainer       "Anthony Metcalf"
 maintainer_email "nevyn@anferny.me.uk"
 license          "Apachev2"
